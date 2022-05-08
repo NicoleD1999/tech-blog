@@ -1,15 +1,14 @@
 <h4>All Posts:</h4>
 {{!-- Cards for posts --}}
 <div class="row">
-{{#each messages}}
+{{#each posts}}
 <div class="card post-card" style="width: 18rem;">
      <div class="card-header post-title">
     {{title}}
   </div>
   <div class="card-body">
-    <h6 class="card-subtitle mb-2 text-muted">{{topic}}</h6>
     <p class="card-text">{{contents}}</p>
-    <a href="messages/{{id}}">View Post</a>
+    <a href="/{{id}}">View Post</a>
   </div>
 </div>
 {{/each}}

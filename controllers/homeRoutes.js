@@ -1,49 +1,48 @@
-const { Post, Comments, User } = require('../models');
-const auth = require('../utils/auth');
+const {Post, Comments, User} = require('../models');
+// const auth = require('../utils/auth');
 
-let logged_in;
+// let logged_in;
 const router = require('express').Router();
-// const { User, Post } = require('../models');
 
-router.get('/', auth, async (req, res) => {
-    try {
-       logged_in = req.session.logged_in
-      res.render('home');
+// router.get('/', auth, async (req, res) => {
+//     try {
+//        logged_in = req.session.logged_in
+//       res.render('home');
 
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-});
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+// });
 
 
-router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+// router.get('/login', (req, res) => {
+//   // If a session exists, redirect the request to the homepage
   
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
+//   if (req.session.logged_in) {
+//     res.redirect('/');
+//     return;
+//   }
 
-   res.render('login');
-});
+//    res.render('login');
+// });
 
-router.get('/signup',  (req, res)=> {
-  try {
+// router.get('/signup',  (req, res)=> {
+//   try {
 
-    res.render('signup');
+//     res.render('signup');
     
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 //view all posts
-router.get('/posts',  (req, res)=> {
+router.get('/', async (req, res)=> {
     try{
         const postData = await Post.findAll()
             const posts = postData.map((post) => post.get({ plain: true }));
-            res.render('posts', { posts });
+            res.render('home', { posts });
 
     }catch (err) {
         res.status(500).json(err);
@@ -52,7 +51,7 @@ router.get('/posts',  (req, res)=> {
 //view single posts by their id
 router.get('/:id', async (req, res) => {
     try {
-        const message = await Post.findByPk(req.params.id, {
+        const post = await Post.findByPk(req.params.id, {
             include: [
                 {
                 model: Comments,
@@ -64,9 +63,9 @@ router.get('/:id', async (req, res) => {
             }
         ]
         });
-        const singlePost = message.get({ plain: true });
+        const singlePost = post.get({ plain: true });
         console.log(singlePost)
-            res.render('singleposts', { singlePost });
+            res.render('singlePosts', { singlePost });
         } catch (err) {
             console.error(err);
             res.status(400).json(err);
@@ -88,4 +87,4 @@ router.post('/:id', async (req, res) => {
 
 
 
-  module.exports = router;
+module.exports = router;
