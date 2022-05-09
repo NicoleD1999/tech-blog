@@ -1,7 +1,6 @@
 const {Post, Comments, User} = require('../models');
 // const auth = require('../utils/auth');
 
-let logged_in;
 const router = require('express').Router();
 
 //view all posts
@@ -10,7 +9,7 @@ router.get('/', async (req, res)=> {
 
         const postData = await Post.findAll()
             const posts = postData.map((post) => post.get({ plain: true }));
-            res.render('home', { posts, logged_in: req.session.logged_in
+            res.render('home', { posts, logged_in: req.session.logged_in, user_id: req.session.user_id
              });
 
     }catch (err) {
@@ -33,8 +32,7 @@ router.get('/:id', async (req, res) => {
         ]
         });
         const singlePost = post.get({ plain: true });
-        console.log(singlePost)
-            res.render('singlePosts', { singlePost });
+            res.render('singlePosts', { singlePost, logged_in: req.session.logged_in, user_id: req.session.user_id });
         } catch (err) {
             console.error(err);
             res.status(400).json(err);

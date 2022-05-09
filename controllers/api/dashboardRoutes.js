@@ -12,7 +12,7 @@ router.get('/:user_id', async (req, res)=> {
         })
         const posts = userData.get({ plain: true});
         console.log(posts)
-        res.render('dashboard', { posts })
+        res.render('dashboard', { posts, logged_in: req.session.logged_in, user_id: req.session.user_id })
 
     }catch (err) {
         res.status(500).json(err);
