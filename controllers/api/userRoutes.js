@@ -94,7 +94,7 @@ router.get('/logout', (req, res) => {
     } else {
       res.status(404).end();
     }
-    res.send("Logged out");
+    res.send("succesfully logged out");
   });
 
 module.exports = router;
