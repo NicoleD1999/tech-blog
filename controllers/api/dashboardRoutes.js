@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const {User, Post} = require('../../models');
 
-router.get('/:id', async (req, res)=> {
+router.get('/:user_id', async (req, res)=> {
     try{
-        const userData = await User.findByPk(req.session.id, {
+        const userData = await User.findByPk(req.params.user_id, {
             include: [
                 {
                     model: Post
@@ -12,9 +12,21 @@ router.get('/:id', async (req, res)=> {
         })
         const posts = userData.get({ plain: true});
         console.log(posts)
-        res.render('dashboard', {posts})
+        res.render('dashboard', { posts })
 
     }catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.post('/:user_id', async (req, res) => {
+    try {
+        const message = await Post.create({
+            ...req.body,
+            user_id: req.params.user_id 
+        });
+        res.json({message})
+    } catch (err) {
         res.status(500).json(err);
     }
 });
