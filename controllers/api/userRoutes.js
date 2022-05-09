@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const { response } = require('express');
 const { User } = require('../../models');
-const auth = require('../utils/auth');
 
-let logged_in;
 
 
 router.get('/signup', (req, res) => {
@@ -14,16 +12,11 @@ router.get('/signup', (req, res) => {
 router.post('/signup', async (req, res) => {
     
         // Find the user who matches with the username in the database
-        // const user = await User.findOne({ where: { user_name: req.body.user_name } });
-
         // If there is no match with the username, send a incorrect message to the user and have them retry
        
             try {
                 const createUser = await User.create({
                     user_name: req.body.user_name,
-                    first_name : req.body.first_name,
-                    last_name: req.body.last_name,
-                    bootcamp_type: req.body.bootcamp_type,
                     email: req.body.email,
                     password: req.body.password
 
@@ -31,11 +24,7 @@ router.post('/signup', async (req, res) => {
                     req.session.save(() => {
                     req.session.user_id = createUser.id;
                     req.session.logged_in = true;
-                    res.json(createUser);
                   });
-                emailer(req.body.email).catch(console.error);
-                // res.json({ message: `User created` })
-                // res.redirect('/');
                 
             } catch (err) {
                 res.status(500).json(err)
@@ -85,8 +74,6 @@ router.post('/login', async (req, res) => {
         res.json({ user: user, message: 'You are logged in'})
       });
       
-      // res.status(200).json({message: `Hello`});
-      // res.render('home')
   
   
     } catch (error) {

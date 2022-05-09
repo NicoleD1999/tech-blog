@@ -3,7 +3,7 @@ const router = require('express').Router();
 // const signupRoutes = require('./signupRoutes');
 const userRoutes = require('./userRoutes')
 const dashboard = require('./dashboardRoutes')
-
+router.use('/user', userRoutes);
 router.use('/dashboard', dashboard);
 // router.use('/login', loginRoutes);
 // router.use('/signup', signupRoutes);
