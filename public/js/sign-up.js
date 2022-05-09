@@ -36,8 +36,7 @@ const signUpHandler = async (event) => {
             }
         if(response.ok){
             //replaces current page with home page
-            alert("signed up")
-            // document.location.replace('/');
+            document.location.replace('/api/user/login');
         } else {
             errorMessage.text('Email or username already exist in our database. Try another email and username.')
             return $('error-div').append(errorMessage)

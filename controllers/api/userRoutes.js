@@ -14,21 +14,22 @@ router.post('/signup', async (req, res) => {
         // Find the user who matches with the username in the database
         // If there is no match with the username, send a incorrect message to the user and have them retry
        
-            try {
-                const createUser = await User.create({
-                    user_name: req.body.user_name,
-                    email: req.body.email,
-                    password: req.body.password
+          try {
+              const createUser = await User.create({
+                  user_name: req.body.user_name,
+                  email: req.body.email,
+                  password: req.body.password
 
+              });
+                req.session.save(() => {
+                  req.session.user_id = createUser.id;
+                  console.log(req.session.user_id);
+                  req.session.logged_in = true;
+                  res.json(createUser);
                 });
-                    req.session.save(() => {
-                    req.session.user_id = createUser.id;
-                    req.session.logged_in = true;
-                  });
-                
-            } catch (err) {
-                res.status(500).json(err)
-            }
+          } catch (err) {
+              res.status(500).json(err)
+          }
 });
 
 
@@ -84,7 +85,7 @@ router.post('/login', async (req, res) => {
 
 
 //   Logout route 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     if (req.session.logged_in) {
       // Remove the session variables
       req.session.destroy(() => {
@@ -93,6 +94,7 @@ router.post('/logout', (req, res) => {
     } else {
       res.status(404).end();
     }
+    res.send("Logged out");
   });
 
 module.exports = router;

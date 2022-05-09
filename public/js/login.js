@@ -32,5 +32,5 @@ $('#login-form').on('submit', loginHandler);
 }
 
 $('#signupBtn').on('click', () => {
-    document.location.replace('/api/signup')
+    document.location.replace('/api/user/signup')
 })
