@@ -9,7 +9,7 @@ const exphbs = require('express-handlebars');
 //requiring index file within the controllers folder
 const routes = require('./controllers');
 //requiring helper.js from utils folder
-const helpers = require('./utils/auth');
+const helpers = require('./utils/helper');
 //requiring connection.js from config folder
 const sequelize = require('./config/connection');
 //?

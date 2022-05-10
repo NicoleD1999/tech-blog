@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="/css/singlepost.css">
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -27,7 +27,8 @@
 
 <div class="card post-card" style="width: 65rem;">
       <div class="card-header post-name">
-    {{singlePost.title}}
+    {{singlePost.title}} 
+    <h6>Posted On {{format_date singlePost.createdAt}}</h6>
   </div>
   <div class="card-body">
     <h6 class="card-subtitle mb-2 text-muted">{{singlePost.topic}}</h6>
@@ -44,7 +45,8 @@
 {{#each singlePost.comments as |comments|}}
 <div class="card post-card" style="width: 30rem;">
     <div class="card-header">
-    Posted By: {{user.user_name}} on {{comments.createdAt}}
+    <h5>Posted By: {{user.user_name}}</h5>
+    <p> on {{ format_date comments.createdAt}}</p>
   </div>
   <div class="card-body">
     <h5 class="card-text comment-text">{{comments.contents}}</h5>

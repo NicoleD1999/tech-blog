@@ -31,4 +31,16 @@ router.post('/:user_id', async (req, res) => {
     }
 });
 
+router.put('/:user_id', async (req, res) => {
+    try {
+        const message = await Post.create({
+            ...req.body,
+            user_id: req.params.user_id 
+        });
+        res.json({message})
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

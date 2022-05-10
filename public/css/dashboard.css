@@ -1,0 +1,28 @@
+
+
+.line {
+    height: 1px;
+    background: black;
+}
+
+.add-post {
+    float: right;
+    position: relative;
+    bottom: 37px;
+}
+.post-name {
+    font-size: 30px;
+}
+
+.post-text {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.comment-text {
+    font-size: 15px;
+}
+
+.comment-section {
+    font-size: larger;
+}

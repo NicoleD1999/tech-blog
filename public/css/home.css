@@ -1,0 +1,22 @@
+
+
+.main-text{
+    font-weight: bolder;
+}
+
+.post-title {
+    font-size: larger;
+    font-weight: bolder;
+}
+.add-post {
+    float: right;
+    position: relative;
+    bottom: 40px;
+}
+.post-card {
+    margin: 20px
+}
+
+.post-button {
+margin-top: 10px;
+}

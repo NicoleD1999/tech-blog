@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+<h3>Dashboard</h3>
 <button id="modalBtn" type="button" class="btn btn-success add-post" data-toggle="modal" data-target="#myModal">
   ✚ Add Post
 </button>
@@ -31,16 +33,16 @@
   </div>
 </div>
 {{!-- Cards for posts --}}
-<h3>Dashboard</h3>
+
 <div class="row">
 {{#each posts.posts}}
 <div class="card post-card">
-  <div class="card-header post-title">
+  <div class="card-header post-title post-name">
     {{title}}
   </div>
   <div class="card-body">
     <h6 class="card-text">{{contents}}</h6>
-    <p class="card-subtitle mb-2 text-muted">Posted On: {{createdAt}}</p>
+    <p class="card-subtitle mb-2 text-muted">Posted On: {{format_date createdAt}}</p>
   </div>
 </div>
 {{/each}}
