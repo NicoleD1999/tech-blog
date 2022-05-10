@@ -25,7 +25,7 @@ Post.init (
             allowNull: false,
             validate: {
                 len: [1, 250]
-            }
+            },
         },
         user_id: {
             type: DataTypes.INTEGER,

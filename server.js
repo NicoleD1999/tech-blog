@@ -1,3 +1,4 @@
+
 //requiring built in 'path'
 const path = require('path');
 // requiring npm package express & npm package express-session
@@ -24,7 +25,7 @@ const hbs = exphbs.create({ helpers });
 // 
 const sess = {
   secret: 'Super secret secret',
-  cookie: {},
+  cookie: {maxAge:40000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -47,3 +48,5 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on port http://localhost:${PORT} `));
 });
+
+

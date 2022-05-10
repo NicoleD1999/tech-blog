@@ -25,14 +25,14 @@ router.get('/:id', async (req, res) => {
                 model: Comments,
                 include: [
                     {
-                        model: User
+                        model: User,
                     }
                 ]
             }
         ]
         });
         const singlePost = post.get({ plain: true });
-            res.render('singlePosts', { singlePost, logged_in: req.session.logged_in, user_id: req.session.user_id });
+        res.render('singlePosts', { singlePost, logged_in: req.session.logged_in, user_id: req.session.user_id });
         } catch (err) {
             console.error(err);
             res.status(400).json(err);
